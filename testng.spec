@@ -34,7 +34,7 @@
 
 Name:           testng
 Version:        5.6
-Release:        %mkrel 0.0.1
+Release:        %mkrel 1.0.1
 Epoch:          0
 Summary:        TestNG
 License:        Apache Software License 
