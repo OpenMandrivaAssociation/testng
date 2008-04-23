@@ -33,13 +33,13 @@
 %define section free
 
 Name:           testng
-Version:        5.6
-Release:        %mkrel 1.0.1
+Version:        5.8
+Release:        %mkrel 0.0.1
 Epoch:          0
 Summary:        TestNG
 License:        Apache Software License 
 Url:            http://testng.org
-Source0:        http://testng.org/testng-5.6.zip
+Source0:        http://testng.org/testng-%{version}.zip
 Source1:        testng-test.tar.gz
 # svn export http://testng.googlecode.com/svn/trunk/test/
 Source2:        testng-test-14.tar.gz
@@ -107,7 +107,7 @@ Group:          Development/Java
 %{summary}.
 
 %prep
-%setup -q -c
+%setup -q 
 gzip -dc %{SOURCE1} | tar xf -
 gzip -dc %{SOURCE2} | tar xf -
 rm test/src/test/invocationcount/DataProviderFalseFalseTest.java
