@@ -34,7 +34,7 @@
 
 Name:           testng
 Version:        5.8
-Release:        %mkrel 2.0.1
+Release:        %mkrel 2.0.2
 Epoch:          0
 Summary:        TestNG
 License:        Apache Software License 
@@ -179,7 +179,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 %update_maven_depmap
 %if %{gcj_support}
-%%{clean_gcjdb}
+%{clean_gcjdb}
 %endif
 
 %files
