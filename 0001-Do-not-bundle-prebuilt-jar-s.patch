@@ -1,0 +1,44 @@
+From 4bc2dd4f10a7cca628af7c9c8aac6fe3b3d5ad27 Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Fri, 27 Nov 2009 14:46:15 +0100
+Subject: [PATCH 1/4] Do not bundle prebuilt jar-s
+
+---
+ build.xml |   12 ++++++------
+ 1 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/build.xml b/build.xml
+index 683100d..832b36b 100644
+--- a/build.xml
++++ b/build.xml
+@@ -243,21 +243,21 @@
+   </target>
+ 
+   <target name="extract-beanshell-jar">
+-    <unjar src="3rdparty/${beanshell.jar}"
++    <!--unjar src="3rdparty/${beanshell.jar}"
+            dest="${build.3rdparty.dir}"
+-           overwrite="true" />
++           overwrite="true" /-->
+   </target>
+ 
+   <target name="extract-qdox-jar">
+-    <unjar src="3rdparty/${qdox.jar}"
++    <!--unjar src="3rdparty/${qdox.jar}"
+            dest="${build.3rdparty.dir}"
+-           overwrite="true" />
++           overwrite="true" /-->
+   </target>
+ 
+   <target name="extract-concurrent-jar">
+-    <unjar src="3rdparty/${concurrent.jar}"
++    <!--unjar src="3rdparty/${concurrent.jar}"
+            dest="${build.3rdparty.dir}"
+-           overwrite="true" />
++           overwrite="true" /-->
+   </target>
+ 
+   <target name="dist-15" depends="compile-15, dist-15-bsh">
+-- 
+1.6.5.2
+

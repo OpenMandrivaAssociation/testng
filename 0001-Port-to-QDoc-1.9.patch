@@ -1,0 +1,43 @@
+From 02af5468f942e91ddbbbafab7256124b1e72b013 Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Fri, 27 Nov 2009 14:46:16 +0100
+Subject: [PATCH 3/4] Port to QDoc 1.9
+
+---
+ .../testng/internal/AnnotationTestConverter.java   |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/main/org/testng/internal/AnnotationTestConverter.java b/src/main/org/testng/internal/AnnotationTestConverter.java
+index 539592b..d024e9f 100644
+--- a/src/main/org/testng/internal/AnnotationTestConverter.java
++++ b/src/main/org/testng/internal/AnnotationTestConverter.java
+@@ -115,7 +115,7 @@ public class AnnotationTestConverter {
+     Class<IAnnotation> annotationClass= m_annotationMap.get(tag.getName());
+     if(annotationClass == null) {
+       ppp("Found unknown testng annotation " + tag.getName() + " in file "
+-          + tag.getContext().getSource().getFile().getAbsolutePath() + " at line "
++          + tag.getContext().getParent().getParentSource().getFile().getAbsolutePath() + " at line "
+           + tag.getLineNumber());
+ 
+       // preserve the information - but it looks like an invalid tag
+@@ -128,7 +128,7 @@ public class AnnotationTestConverter {
+     }
+     catch(Exception e) {
+       ppp("Found unknown testng parameter " + key + " in annotation " + tag.getName() + " in file "
+-          + tag.getContext().getSource().getFile().getAbsolutePath() + " at line "
++          + tag.getContext().getParent().getParentSource().getFile().getAbsolutePath() + " at line "
+           + tag.getLineNumber());
+ 
+       // preserve the information - but it looks like an invalid parameter
+@@ -279,7 +279,7 @@ public class AnnotationTestConverter {
+ 
+         if(finalLines.size() > lineCount) {
+           ppp("Writing file " + file.getAbsolutePath());
+-          writeFile(file, source.getPackage(), finalLines);
++          writeFile(file, source.getPackage().getName(), finalLines);
+           converted++;
+         }
+       }
+-- 
+1.6.5.2
+

@@ -1,0 +1,39 @@
+From 770133c22ac56be30115f33a904e8d590e0c0cda Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Fri, 27 Nov 2009 14:46:16 +0100
+Subject: [PATCH 2/4] Disable DTDDoc target
+
+We do not ship DTDDoc yet.
+---
+ build.xml |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/build.xml b/build.xml
+index 832b36b..71af78b 100644
+--- a/build.xml
++++ b/build.xml
+@@ -371,17 +371,17 @@
+     <copy file="${jdk15.testng.jar}" tofile="${jdk15.jar}" />
+   </target>
+ 
+-  <taskdef name="DTDDoc" classname="DTDDoc.DTDDocTask"
+-     classpath="lib/DTDDoc.jar"/>
++  <!--taskdef name="DTDDoc" classname="DTDDoc.DTDDocTask"
++     classpath="lib/DTDDoc.jar"/-->
+ 
+   <target name="dtd">
+-    <DTDDoc showHiddenTags="false"
++    <!--DTDDoc showHiddenTags="false"
+             showFixmeTags="false"
+             sourceDir="src/main"
+             destDir="dtd"
+             docTitle="TestNG DTD">
+         <include name="testng-1.0.dtd"/>
+-    </DTDDoc>
++    </DTDDoc-->
+   </target>
+ 
+   <target name="ftp">
+-- 
+1.6.5.2
+
