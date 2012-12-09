@@ -21,6 +21,10 @@ BuildRequires:  java-devel-openjdk
 BuildRequires:  bsh
 BuildRequires:  qdox
 BuildRequires:  junit
+BuildRequires:  jaxp_parser_impl
+BuildRequires:  xml-commons-apis
+BuildRequires:  java-1.6.0-openjdk-devel
+
 Requires:       jpackage-utils
 
 BuildArch:      noarch
@@ -103,5 +107,34 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun
 %update_maven_depmap
+
+
+
+
+%changelog
+* Sun Nov 27 2011 Guilherme Moro <guilherme@mandriva.com> 5.11-6
++ Revision: 734246
+- rebuild
+- imported package testng
+
+* Thu Jan 15 2009 Götz Waschk <waschk@mandriva.org> 0:5.8-2.0.2mdv2009.1
++ Revision: 329848
+- fix postun script
+
+* Thu Aug 07 2008 Thierry Vignaud <tv@mandriva.org> 0:5.8-2.0.1mdv2009.0
++ Revision: 265755
+- rebuild early 2009.0 package (before pixel changes)
+
+* Wed Apr 23 2008 Alexander Kurtakov <akurtakov@mandriva.org> 0:5.8-0.0.1mdv2009.0
++ Revision: 196814
+- new version
+
+* Thu Feb 07 2008 Alexander Kurtakov <akurtakov@mandriva.org> 0:5.6-1.0.1mdv2008.1
++ Revision: 163756
+- rebuild
+
+* Sat Jan 26 2008 Alexander Kurtakov <akurtakov@mandriva.org> 0:5.6-0.0.1mdv2008.1
++ Revision: 158300
+- import testng
 
 
