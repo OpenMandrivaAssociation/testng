@@ -1,6 +1,6 @@
 Name:           testng
 Version:        5.11
-Release:        6
+Release:        7
 Summary:        Java-based testing framework
 
 Group:          Development/Java
@@ -12,12 +12,9 @@ Patch0:         0001-Do-not-bundle-prebuilt-jar-s.patch
 Patch1:         0001-Disable-DTDDoc-target.patch
 Patch2:         0001-Port-to-QDoc-1.9.patch
 
-BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
-
 BuildRequires:  ant
 BuildRequires:  unzip
 BuildRequires:  jpackage-utils
-BuildRequires:  java-devel-openjdk
 BuildRequires:  bsh
 BuildRequires:  qdox
 BuildRequires:  junit
@@ -82,10 +79,6 @@ install -d -m 755 $RPM_BUILD_ROOT%{_datadir}/maven2/poms
 install -pm 644 %{SOURCE1} \
         $RPM_BUILD_ROOT/%{_datadir}/maven2/poms/JPP-%{name}.pom
 %add_to_maven_depmap org.%{name} %{name} %{version} JPP %{name}
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 
 %files

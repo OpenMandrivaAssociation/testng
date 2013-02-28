@@ -1,0 +1,702 @@
+Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.97187
++ umask 022
++ cd /home/bero/abf/testng/BUILD
++ '[' 1 -eq 1 ']'
++ '[' 1 -eq 1 ']'
++ '[' 1 -eq 1 ']'
++ cd /home/bero/abf/testng/BUILD
++ rm -rf testng-5.11
++ /usr/bin/unzip -qq /home/bero/abf/testng/testng-5.11.zip
++ STATUS=0
++ '[' 0 -ne 0 ']'
++ cd testng-5.11
++ echo 'Patch #0 (0001-Do-not-bundle-prebuilt-jar-s.patch):'
+Patch #0 (0001-Do-not-bundle-prebuilt-jar-s.patch):
++ /bin/cat /home/bero/abf/testng/0001-Do-not-bundle-prebuilt-jar-s.patch
++ /usr/bin/patch --fuzz=0 -s -U -p1 -b --suffix .nobundle
++ echo 'Patch #1 (0001-Disable-DTDDoc-target.patch):'
+Patch #1 (0001-Disable-DTDDoc-target.patch):
++ /bin/cat /home/bero/abf/testng/0001-Disable-DTDDoc-target.patch
++ /usr/bin/patch --fuzz=0 -s -U -p1 -b --suffix .dtddoc
++ echo 'Patch #2 (0001-Port-to-QDoc-1.9.patch):'
+Patch #2 (0001-Port-to-QDoc-1.9.patch):
++ /bin/cat /home/bero/abf/testng/0001-Port-to-QDoc-1.9.patch
++ /usr/bin/patch --fuzz=0 -s -U -p1 -b --suffix .qdoc19
++ exit 0
+Executing(%build): /bin/sh -e /var/tmp/rpm-tmp.97187
++ umask 022
++ cd /home/bero/abf/testng/BUILD
++ cd testng-5.11
++ '[' 1 -eq 1 ']'
++ '[' 1 -eq 1 ']'
++ find -name '*.jar' -delete
+++ build-classpath bsh qdox junit
+find_jar bsh
+extension bsh found: 0 found_extension: /usr/share/java/bsh.jar
+find_jar qdox
+extension qdox found: 0 found_extension: /usr/share/java/qdox.jar
+find_jar junit
+extension junit found: 0 found_extension: /usr/share/java/junit.jar
++ CLASSPATH=/usr/share/java/bsh.jar:/usr/share/java/qdox.jar:/usr/share/java/junit.jar
++ ant dist-15 javadocs
+find_jar ant
+extension ant found: 0 found_extension: /usr/share/java/ant.jar
+find_jar ant-launcher
+extension ant-launcher found: 0 found_extension: /usr/share/java/ant-launcher.jar
+find_jar jaxp_parser_impl
+extension jaxp_parser_impl found: 0 found_extension: /usr/share/java/jaxp_parser_impl.jar
+find_jar xml-commons-apis
+extension xml-commons-apis found: 0 found_extension: /usr/share/java/xml-commons-apis.jar
+Buildfile: /home/bero/abf/testng/BUILD/testng-5.11/build.xml
+
+prepare:
+    [mkdir] Created dir: /home/bero/abf/testng/BUILD/testng-5.11/build/jdk14
+    [mkdir] Created dir: /home/bero/abf/testng/BUILD/testng-5.11/build/jdk15
+
+copy-resources:
+     [copy] Copying 1 file to /home/bero/abf/testng/BUILD/testng-5.11/build/jdk15
+     [copy] Copying 1 file to /home/bero/abf/testng/BUILD/testng-5.11/build/jdk14
+     [copy] Copying 1 file to /home/bero/abf/testng/BUILD/testng-5.11/build/jdk15
+     [copy] Copying 1 file to /home/bero/abf/testng/BUILD/testng-5.11/build/jdk14
+     [copy] Copying 1 file to /home/bero/abf/testng/BUILD/testng-5.11/build/jdk15
+     [copy] Copying 1 file to /home/bero/abf/testng/BUILD/testng-5.11/build/jdk14
+
+compile-15:
+     [echo]                                  -- Compiling 1.5 sources --
+    [javac] /home/bero/abf/testng/BUILD/testng-5.11/build.xml:140: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 264 source files to /home/bero/abf/testng/BUILD/testng-5.11/build/jdk15
+    [javac] warning: /usr/share/java/bsh.jar(bsh/EvalError.class): major version 51 is newer than 50, the highest major version supported by this compiler.
+    [javac] It is recommended that the compiler be upgraded.
+    [javac] warning: /usr/share/java/bsh.jar(bsh/Interpreter.class): major version 51 is newer than 50, the highest major version supported by this compiler.
+    [javac] It is recommended that the compiler be upgraded.
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+    [javac] 2 warnings
+
+dist-15-bsh:
+
+clean-unjar:
+    [mkdir] Created dir: /home/bero/abf/testng/BUILD/testng-5.11/build/3rdparty
+
+extract-qdox-jar:
+
+extract-beanshell-jar:
+      [jar] Building jar: /home/bero/abf/testng/BUILD/testng-5.11/testng-5.11-jdk15.jar
+
+dist-15:
+
+javadocs:
+  [javadoc] Generating Javadoc
+  [javadoc] Javadoc execution
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/AnnotationConverter.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/Assert.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/AssertJUnit.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ClassMethodMap.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/FileAssert.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAnnotationTransformer.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAnnotationTransformer2.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAttributes.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IClass.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IExtraOutput.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IHookCallBack.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IHookable.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IInstanceInfo.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IInvokedMethod.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IInvokedMethodListener.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IMethodInstance.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IMethodInterceptor.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IMethodSelector.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IMethodSelectorContext.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IObjectFactory.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IReporter.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IResultMap.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IRetryAnalyzer.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ISuite.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ISuiteListener.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ISuiteResult.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITest.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestClass.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestClassFinder.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestContext.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestListener.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestMethodFinder.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestNGListener.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestNGMethod.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestResult.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestRunnerFactory.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/JUnitConverter.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/JUnitConverterTask.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/Reporter.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ReporterConfig.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SkipException.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteResult.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteRunState.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteRunner.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestClass.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestException.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestListenerAdapter.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNGAntTask.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNGCommandLineArgs.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNGException.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNGUtils.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TimeBombSkipException.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlClass.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlMethodSelector.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlPackage.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlSuite.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlTest.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/AfterClass.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/AfterGroups.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/AfterMethod.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/AfterSuite.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/AfterTest.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/BeforeClass.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/BeforeGroups.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/BeforeMethod.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/BeforeSuite.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/BeforeTest.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/Configuration.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/DataProvider.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/ExpectedExceptions.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/Factory.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/ObjectFactory.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/Optional.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/Parameters.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/Test.java...
+  [javadoc] Loading source file /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/TestInstance.java...
+  [javadoc] Constructing Javadoc information...
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/AnnotationConverter.java:4: package org.testng.collections does not exist
+  [javadoc] import org.testng.collections.Maps;
+  [javadoc]                              ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/AnnotationConverter.java:5: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.AnnotationDirectoryConverter;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAnnotationTransformer.java:3: cannot find symbol
+  [javadoc] symbol  : class ITestAnnotation
+  [javadoc] location: package org.testng.annotations
+  [javadoc] import org.testng.annotations.ITestAnnotation;
+  [javadoc]                              ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAnnotationTransformer.java:28: cannot find symbol
+  [javadoc] symbol  : class ITestAnnotation
+  [javadoc] location: interface org.testng.IAnnotationTransformer
+  [javadoc]   public void transform(ITestAnnotation annotation, Class testClass,
+  [javadoc]                         ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAnnotationTransformer2.java:3: cannot find symbol
+  [javadoc] symbol  : class IConfigurationAnnotation
+  [javadoc] location: package org.testng.annotations
+  [javadoc] import org.testng.annotations.IConfigurationAnnotation;
+  [javadoc]                              ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAnnotationTransformer2.java:4: cannot find symbol
+  [javadoc] symbol  : class IDataProviderAnnotation
+  [javadoc] location: package org.testng.annotations
+  [javadoc] import org.testng.annotations.IDataProviderAnnotation;
+  [javadoc]                              ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAnnotationTransformer2.java:5: cannot find symbol
+  [javadoc] symbol  : class IFactoryAnnotation
+  [javadoc] location: package org.testng.annotations
+  [javadoc] import org.testng.annotations.IFactoryAnnotation;
+  [javadoc]                              ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAnnotationTransformer2.java:30: cannot find symbol
+  [javadoc] symbol  : class IConfigurationAnnotation
+  [javadoc] location: interface org.testng.IAnnotationTransformer2
+  [javadoc]   public void transform(IConfigurationAnnotation annotation, Class testClass,
+  [javadoc]                         ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAnnotationTransformer2.java:38: cannot find symbol
+  [javadoc] symbol  : class IDataProviderAnnotation
+  [javadoc] location: interface org.testng.IAnnotationTransformer2
+  [javadoc]   public void transform(IDataProviderAnnotation annotation, Method method);
+  [javadoc]                         ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IAnnotationTransformer2.java:45: cannot find symbol
+  [javadoc] symbol  : class IFactoryAnnotation
+  [javadoc] location: interface org.testng.IAnnotationTransformer2
+  [javadoc]   public void transform(IFactoryAnnotation annotation, Method method);
+  [javadoc]                         ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ISuite.java:7: package org.testng.internal.annotations does not exist
+  [javadoc] import org.testng.internal.annotations.IAnnotationFinder;
+  [javadoc]                                       ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlTest.java:11: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.AnnotationTypeEnum;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlTest.java:12: package org.testng.reporters does not exist
+  [javadoc] import org.testng.reporters.XMLStringBuffer;
+  [javadoc]                            ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ISuite.java:88: cannot find symbol
+  [javadoc] symbol  : class IAnnotationFinder
+  [javadoc] location: interface org.testng.ISuite
+  [javadoc]   public IAnnotationFinder getAnnotationFinder(String type);
+  [javadoc]          ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlSuite.java:11: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.AnnotationTypeEnum;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlSuite.java:12: package org.testng.internal.version does not exist
+  [javadoc] import org.testng.internal.version.VersionInfo;
+  [javadoc]                                   ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlSuite.java:13: package org.testng.reporters does not exist
+  [javadoc] import org.testng.reporters.XMLStringBuffer;
+  [javadoc]                            ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlClass.java:10: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.ClassHelper;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlClass.java:11: package org.testng.reporters does not exist
+  [javadoc] import org.testng.reporters.XMLStringBuffer;
+  [javadoc]                            ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlTest.java:37: cannot find symbol
+  [javadoc] symbol  : class AnnotationTypeEnum
+  [javadoc] location: class org.testng.xml.XmlTest
+  [javadoc]   private AnnotationTypeEnum m_annotations;
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlMethodSelector.java:6: package org.testng.reporters does not exist
+  [javadoc] import org.testng.reporters.XMLStringBuffer;
+  [javadoc]                            ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlPackage.java:3: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.PackageUtils;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlPackage.java:4: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.Utils;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlPackage.java:5: package org.testng.reporters does not exist
+  [javadoc] import org.testng.reporters.XMLStringBuffer;
+  [javadoc]                            ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlSuite.java:68: cannot find symbol
+  [javadoc] symbol  : class AnnotationTypeEnum
+  [javadoc] location: class org.testng.xml.XmlSuite
+  [javadoc]   private AnnotationTypeEnum m_annotations;
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlSuite.java:71: cannot find symbol
+  [javadoc] symbol  : class AnnotationTypeEnum
+  [javadoc] location: class org.testng.xml.XmlSuite
+  [javadoc]   private AnnotationTypeEnum m_defaultAnnotations = VersionInfo.getDefaultAnnotationType();
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:4: package org.testng.collections does not exist
+  [javadoc] import org.testng.collections.Lists;
+  [javadoc]                              ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:5: package org.testng.collections does not exist
+  [javadoc] import org.testng.collections.Maps;
+  [javadoc]                              ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:6: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.ClassHelper;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:7: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.ConfigurationGroupMethods;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:8: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.Constants;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:9: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.DynamicGraph;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:10: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.IConfigurationListener;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:11: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.IInvoker;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:12: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.IMethodWorker;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:13: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.ITestResultNotifier;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:14: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.IWorkerFactory;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:15: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.InvokedMethod;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:16: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.Invoker;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:17: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.MapList;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:18: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.MethodHelper;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:19: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.MethodInstance;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:20: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.ResultMap;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:21: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.RunInfo;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:22: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.TestMethodWorker;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:23: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.TestNGClassFinder;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:24: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.TestNGMethodFinder;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:25: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.Utils;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:26: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.XmlMethodSelector;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:27: package org.testng.internal.annotations does not exist
+  [javadoc] import org.testng.internal.annotations.IAnnotationFinder;
+  [javadoc]                                       ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:28: package org.testng.internal.annotations does not exist
+  [javadoc] import org.testng.internal.annotations.Sets;
+  [javadoc]                                       ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:29: package org.testng.internal.thread does not exist
+  [javadoc] import org.testng.internal.thread.GroupThreadPoolExecutor;
+  [javadoc]                                  ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:30: package org.testng.internal.thread does not exist
+  [javadoc] import org.testng.internal.thread.ThreadUtil;
+  [javadoc]                                  ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:31: package org.testng.junit does not exist
+  [javadoc] import org.testng.junit.IJUnitTestRunner;
+  [javadoc]                        ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:32: package org.testng.v6 does not exist
+  [javadoc] import org.testng.v6.IRunGroupFactory;
+  [javadoc]                     ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:33: package org.testng.v6 does not exist
+  [javadoc] import org.testng.v6.TestPlan;
+  [javadoc]                     ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:58: cannot find symbol
+  [javadoc] symbol: class ITestResultNotifier
+  [javadoc] public class TestRunner implements ITestContext, ITestResultNotifier, IWorkerFactory {
+  [javadoc]                                                  ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:58: cannot find symbol
+  [javadoc] symbol: class IWorkerFactory
+  [javadoc] public class TestRunner implements ITestContext, ITestResultNotifier, IWorkerFactory {
+  [javadoc]                                                                       ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:68: cannot find symbol
+  [javadoc] symbol  : class IInvoker
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   transient private IInvoker m_invoker= null;
+  [javadoc]                     ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:69: cannot find symbol
+  [javadoc] symbol  : class IAnnotationFinder
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   transient private IAnnotationFinder m_annotationFinder= null;
+  [javadoc]                     ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:73: cannot find symbol
+  [javadoc] symbol  : class IConfigurationListener
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   transient private List<IConfigurationListener> m_configurationListeners= new ArrayList<IConfigurationListener>();
+  [javadoc]                          ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:75: cannot find symbol
+  [javadoc] symbol  : class IConfigurationListener
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   transient private IConfigurationListener m_confListener= new ConfigurationListener();
+  [javadoc]                     ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:97: cannot find symbol
+  [javadoc] symbol  : class XmlMethodSelector
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private XmlMethodSelector m_xmlMethodSelector = new XmlMethodSelector();
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:114: cannot find symbol
+  [javadoc] symbol  : class ConfigurationGroupMethods
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private ConfigurationGroupMethods m_groupMethods = null;
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:125: cannot find symbol
+  [javadoc] symbol  : class RunInfo
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private RunInfo m_runInfo= new RunInfo();
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:147: cannot find symbol
+  [javadoc] symbol  : class IAnnotationFinder
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]                     IAnnotationFinder finder,
+  [javadoc]                     ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:156: cannot find symbol
+  [javadoc] symbol  : class IAnnotationFinder
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]     IAnnotationFinder finder, boolean skipFailedInvocationCounts) 
+  [javadoc]     ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:172: cannot find symbol
+  [javadoc] symbol  : class IAnnotationFinder
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]                     IAnnotationFinder annotationFinder,
+  [javadoc]                     ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:209: cannot find symbol
+  [javadoc] symbol  : class IInvoker
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   public IInvoker getInvoker() {
+  [javadoc]          ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:647: cannot find symbol
+  [javadoc] symbol  : class IMethodWorker
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   public List<IMethodWorker> createWorkers(XmlTest xmlTest, Set<ITestNGMethod> methods) {
+  [javadoc]               ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:724: cannot find symbol
+  [javadoc] symbol  : class TestPlan
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private TestPlan m_testPlan;
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:725: cannot find symbol
+  [javadoc] symbol  : class IRunGroupFactory
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private IRunGroupFactory m_runGroupFactory;
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:727: cannot find symbol
+  [javadoc] symbol  : class TestPlan
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   public TestPlan getTestPlan() {
+  [javadoc]          ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:732: cannot find symbol
+  [javadoc] symbol  : class TestMethodWorker
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]       XmlTest xmlTest, ClassMethodMap cmm, List<TestMethodWorker> workers) {
+  [javadoc]                                                 ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:811: cannot find symbol
+  [javadoc] symbol  : class TestMethodWorker
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]       Map<String, String> params, ClassMethodMap cmm, List<TestMethodWorker> workers) {
+  [javadoc]                                                            ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:839: cannot find symbol
+  [javadoc] symbol  : class MapList
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private MapList<Integer, TestMethodWorker> createSequentialWorkers(MapList<Integer,
+  [javadoc]                                                                      ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:839: cannot find symbol
+  [javadoc] symbol  : class MapList
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private MapList<Integer, TestMethodWorker> createSequentialWorkers(MapList<Integer,
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:839: cannot find symbol
+  [javadoc] symbol  : class TestMethodWorker
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private MapList<Integer, TestMethodWorker> createSequentialWorkers(MapList<Integer,
+  [javadoc]                            ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:858: cannot find symbol
+  [javadoc] symbol  : class MethodInstance
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private List<MethodInstance> methodsToMultipleMethodInstances(ITestNGMethod... sl) {
+  [javadoc]                ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:870: cannot find symbol
+  [javadoc] symbol  : class MethodInstance
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private MethodInstance[] methodsToMethodInstances(List<ITestNGMethod> sl) {
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:882: cannot find symbol
+  [javadoc] symbol  : class IMethodWorker
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private void runWorkers(List<? extends IMethodWorker> workers, String parallelMode,
+  [javadoc]                                          ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:883: cannot find symbol
+  [javadoc] symbol  : class MapList
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]       MapList<Integer, TestMethodWorker> sequentialWorkers) {
+  [javadoc]       ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:883: cannot find symbol
+  [javadoc] symbol  : class TestMethodWorker
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]       MapList<Integer, TestMethodWorker> sequentialWorkers) {
+  [javadoc]                        ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:958: cannot find symbol
+  [javadoc] symbol  : class DynamicGraph
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private DynamicGraph<ITestNGMethod> computeAlternateTestList(ITestNGMethod[] methods) {
+  [javadoc]           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:1013: cannot find symbol
+  [javadoc] symbol  : class MapList
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]       List<ITestNGMethod> parallelList, MapList<Integer, ITestNGMethod> outSequentialList) {
+  [javadoc]                                         ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:1286: cannot find symbol
+  [javadoc] symbol  : class InvokedMethod
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   public void addInvokedMethod(InvokedMethod im) {
+  [javadoc]                                ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:1309: cannot find symbol
+  [javadoc] symbol  : class IConfigurationListener
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   public List<IConfigurationListener> getConfigurationListeners() {
+  [javadoc]               ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:1369: cannot find symbol
+  [javadoc] symbol  : class IConfigurationListener
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   public void addConfigurationListener(IConfigurationListener icl) {
+  [javadoc]                                        ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:1376: cannot find symbol
+  [javadoc] symbol  : class InvokedMethod
+  [javadoc] location: class org.testng.TestRunner
+  [javadoc]   private List<InvokedMethod> m_invokedMethods = new ArrayList<InvokedMethod>();
+  [javadoc]                ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/JUnitConverter.java:3: package org.testng.junit does not exist
+  [javadoc] import org.testng.junit.JUnitDirectoryConverter;
+  [javadoc]                        ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/JUnitConverterTask.java:7: package org.testng.junit does not exist
+  [javadoc] import org.testng.junit.JUnitDirectoryConverter;
+  [javadoc]                        ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ReporterConfig.java:3: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.ClassHelper;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ReporterConfig.java:4: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.PropertyUtils;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ReporterConfig.java:5: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.Utils;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteRunner.java:4: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.AnnotationTypeEnum;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteRunner.java:5: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.IInvoker;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteRunner.java:6: package org.testng.internal does not exist
+  [javadoc] import org.testng.internal.Utils;
+  [javadoc]                           ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteRunner.java:7: package org.testng.internal.annotations does not exist
+  [javadoc] import org.testng.internal.annotations.IAnnotationFinder;
+  [javadoc]                                       ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteRunner.java:8: package org.testng.internal.thread does not exist
+  [javadoc] import org.testng.internal.thread.ThreadUtil;
+  [javadoc]                                  ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteRunner.java:9: package org.testng.reporters does not exist
+  [javadoc] import org.testng.reporters.JUnitXMLReporter;
+  [javadoc]                            ^
+  [javadoc] Standard Doclet version 1.6.0_27
+  [javadoc] Building tree for all the packages and classes...
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlClass.java:163: warning - @return tag has no arguments.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlSuite.java:31: package AnnotationTypeEnum does not exist
+  [javadoc]   public static final String JDK5_ANNOTATION_TYPE = AnnotationTypeEnum.JDK.getName();
+  [javadoc]                                                                       ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/xml/XmlSuite.java:34: package AnnotationTypeEnum does not exist
+  [javadoc]   public static final String JAVADOC_ANNOTATION_TYPE = AnnotationTypeEnum.JAVADOC.getName();
+  [javadoc]                                                                          ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/Configuration.java:18: warning - @BeforeGroups, is an unknown tag.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/Configuration.java:18: warning - @AfterMethod is an unknown tag.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/jdk15/org/testng/annotations/Test.java:166: warning - @return tag has no arguments.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/FileAssert.java:46: warning - Tag @see: can't find assertDirectory(File, long, String) in org.testng.FileAssert
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IHookable.java:28: warning - @date is an unknown tag.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IHookCallBack.java:18: warning - @date is an unknown tag.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IMethodSelector.java:27: warning - @Configuration is an unknown tag.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/IReporter.java:16: warning - @date is an unknown tag.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITest.java:11: warning - @date is an unknown tag.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestContext.java:112: warning - @return tag has no arguments.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestContext.java:100: warning - @return tag has no arguments.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/ITestContext.java:106: warning - @return tag has no arguments.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SkipException.java:23: warning - Tag @link: reference not found: 
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SkipException.java:23: warning - Tag @link: reference not found: 
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteRunner.java:477: warning - Tag @see: can't find newTestRunner(org.testng.ISuite, org.testng.xml.XmlTest) in org.testng.ITestRunnerFactory
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/SuiteRunner.java:523: warning - Tag @see: can't find newTestRunner(org.testng.ISuite, org.testng.xml.XmlTest) in org.testng.ITestRunnerFactory
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestListenerAdapter.java:133: warning - @return tag has no arguments.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestListenerAdapter.java:144: warning - Tag @see: reference not found: org.testng.internal.IConfigurationListener#onConfigurationFailure(org.testng.ITestResult)
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestListenerAdapter.java:155: warning - Tag @see: reference not found: org.testng.internal.IConfigurationListener#onConfigurationSkip(org.testng.ITestResult)
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestListenerAdapter.java:162: warning - Tag @see: reference not found: org.testng.internal.IConfigurationListener#onConfigurationSuccess(org.testng.ITestResult)
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java:942: warning - @return tag has no arguments.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java:830: warning - @return tag has no arguments.
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java:99: package AnnotationTypeEnum does not exist
+  [javadoc]   public static final String JDK_ANNOTATION_TYPE = AnnotationTypeEnum.JDK.getName();
+  [javadoc]                                                                      ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java:102: package AnnotationTypeEnum does not exist
+  [javadoc]   public static final String JAVADOC_ANNOTATION_TYPE = AnnotationTypeEnum.JAVADOC.getName();
+  [javadoc]                                                                          ^
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java:224: warning - Tag @see: reference not found: org.testng.reporters.TestHTMLReporter
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java:224: warning - Tag @see: reference not found: org.testng.reporters.JUnitXMLReporter
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java:224: warning - Tag @see: reference not found: org.testng.reporters.XMLReporter
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java:1328: warning - Tag @see: reference not found: org.testng.internal.IConfigurationListener#onConfigurationFailure(org.testng.ITestResult)
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java:1335: warning - Tag @see: reference not found: org.testng.internal.IConfigurationListener#onConfigurationSkip(org.testng.ITestResult)
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestNG.java:1342: warning - Tag @see: reference not found: org.testng.internal.IConfigurationListener#onConfigurationSuccess(org.testng.ITestResult)
+  [javadoc] /home/bero/abf/testng/BUILD/testng-5.11/src/main/org/testng/TestRunner.java:1398: warning - @return tag has no arguments.
+  [javadoc] Building index for all the packages and classes...
+  [javadoc] Building index for all classes...
+  [javadoc] Generating /home/bero/abf/testng/BUILD/testng-5.11/javadocs/stylesheet.css...
+  [javadoc] 4 errors
+  [javadoc] 130 warnings
+
+BUILD SUCCESSFUL
+Total time: 4 seconds
++ sed 's/\r//'
++ touch -r README README.unix
++ mv README.unix README
++ exit 0
+Executing(%install): /bin/sh -e /var/tmp/rpm-tmp.85111
++ umask 022
++ cd /home/bero/abf/testng/BUILD
++ /bin/rm -rf /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot
++ /bin/mkdir -p /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot
++ cd testng-5.11
++ '[' 1 -eq 1 ']'
++ rm -rf /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot
++ install -d /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/java
++ install -pm644 testng-5.11-jdk15.jar /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/java/testng-5.11.jar
++ ln -s testng-5.11.jar /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/java/testng.jar
++ install -d /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/javadoc/testng-5.11
++ cp -a javadocs/allclasses-frame.html javadocs/allclasses-noframe.html javadocs/constant-values.html javadocs/deprecated-list.html javadocs/help-doc.html javadocs/index-all.html javadocs/index.html javadocs/org javadocs/overview-frame.html javadocs/overview-summary.html javadocs/overview-tree.html javadocs/package-list javadocs/resources javadocs/serialized-form.html javadocs/stylesheet.css /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/javadoc/testng-5.11
++ install -d -m 755 /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/maven2/poms
++ install -pm 644 /home/bero/abf/testng/testng-5.11.pom /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot//usr/share/maven2/poms/JPP-testng.pom
++ install -dm 755 /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot//etc/maven/fragments
++ cat
++ '[' -n '' ']'
++ /usr/share/spec-helper/clean_files
++ '[' -n '' ']'
++ COMPRESS='xz -0f --text'
++ COMPRESS_EXT=.xz
++ /usr/lib/rpm/brp-compress
++ '[' -n '' ']'
++ /usr/share/spec-helper/relink_symlinks
++ '[' -n '' ']'
++ /usr/share/spec-helper/clean_perl
++ '[' -n '' ']'
++ /usr/share/spec-helper/lib_symlinks
++ '[' -n '' ']'
++ /usr/share/spec-helper/gprintify
++ '[' -n '' ']'
++ /usr/share/spec-helper/fix_mo
++ '[' -n '' ']'
++ /usr/share/spec-helper/fix_xdg
++ '[' -n '' ']'
++ /usr/share/spec-helper/fix_file_permissions
++ '[' -n '' ']'
++ /usr/share/spec-helper/fix_pamd
++ '[' -n '' ']'
++ /usr/share/spec-helper/remove_info_dir
++ '[' -n '' ']'
++ /usr/share/spec-helper/remove_libtool_files
++ '[' -n '' ']'
++ /usr/share/spec-helper/check_elf_files
++ '[' -n '' ']'
++ /usr/share/spec-helper/remove_rpath
++ /usr/lib/rpm/find-debuginfo.sh -r /home/bero/abf/testng/BUILD/testng-5.11
+
+Processing files: testng-5.11-7.noarch
+Executing(%doc): /bin/sh -e /var/tmp/rpm-tmp.5472
++ umask 022
++ cd /home/bero/abf/testng/BUILD
++ cd testng-5.11
++ DOCDIR=/home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/doc/testng
++ export DOCDIR
++ /bin/mkdir -p /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/doc/testng
++ cp -pr CHANGES.txt README LICENSE.txt /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/doc/testng
++ '[' -n '' ']'
++ /usr/share/spec-helper/fix_eol /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/doc/testng
++ '[' -n '' ']'
++ /usr/share/spec-helper/clean_files /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot/usr/share/doc/testng
+Processing files: testng-javadoc-5.11-7.noarch
+Checking for unpackaged file(s): /usr/lib/rpm/check-files /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot
+Wrote: /home/bero/abf/testng/RPMS/noarch/testng-5.11-7-mdv2013.0.noarch.rpm
+Wrote: /home/bero/abf/testng/RPMS/noarch/testng-javadoc-5.11-7-mdv2013.0.noarch.rpm
+Executing "/usr/bin/rpmlint -T -f /home/bero/abf/testng/testng.rpmlintrc /home/bero/abf/testng/RPMS/noarch/testng-5.11-7-mdv2013.0.noarch.rpm /home/bero/abf/testng/RPMS/noarch/testng-javadoc-5.11-7-mdv2013.0.noarch.rpm":
+testng.noarch: W: non-conffile-in-etc /etc/maven/fragments/testng
+
+testng.noarch: W: no-packager-tag
+
+testng-javadoc.noarch: W: no-packager-tag
+
+testng.noarch: W: jar-not-indexed /usr/share/java/testng-5.11.jar
+
+testng.noarch: W: invalid-license ASL 2.0
+
+testng-javadoc.noarch: W: invalid-license ASL 2.0
+
+testng.noarch: W: incoherent-version-in-changelog 5.11-6 5.11-7
+
+2 packages and 0 specfiles checked; 0 errors, 7 warnings.
+Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.6720
++ umask 022
++ cd /home/bero/abf/testng/BUILD
++ cd testng-5.11
++ /bin/rm -rf /home/bero/abf/testng/BUILDROOT/testng-5.11-7-mdv2013.0.noarch-buildroot
