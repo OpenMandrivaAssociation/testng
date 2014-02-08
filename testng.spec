@@ -1,6 +1,6 @@
 Name:           testng
 Version:        5.11
-Release:        7
+Release:        8
 Summary:        Java-based testing framework
 
 Group:          Development/Java
