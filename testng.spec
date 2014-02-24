@@ -1,30 +1,30 @@
-Name:           testng
-Version:        5.11
-Release:        8
-Summary:        Java-based testing framework
+%{?_javapackages_macros:%_javapackages_macros}
+%global group_id  org.testng
 
-Group:          Development/Java
-License:        ASL 2.0
-URL:            http://testng.org/
-Source0:        http://testng.org/%{name}-%{version}.zip
-Source1:        http://repo2.maven.org/maven2/org/testng/testng/%{version}/testng-%{version}.pom
-Patch0:         0001-Do-not-bundle-prebuilt-jar-s.patch
-Patch1:         0001-Disable-DTDDoc-target.patch
-Patch2:         0001-Port-to-QDoc-1.9.patch
+Name:             testng
+Version:          6.8.7
+Release:          1.1%{?dist}
+Summary:          Java-based testing framework
+# org/testng/remote/strprotocol/AbstractRemoteTestRunnerClient.java is CPL
+License:          ASL 2.0 and CPL
+URL:              http://testng.org/
+Source0:          https://github.com/cbeust/testng/archive/%{name}-%{version}.tar.gz
 
-BuildRequires:  ant
-BuildRequires:  unzip
-BuildRequires:  jpackage-utils
-BuildRequires:  bsh
-BuildRequires:  qdox
-BuildRequires:  junit
-BuildRequires:  jaxp_parser_impl
-BuildRequires:  xml-commons-apis
-BuildRequires:  java-1.6.0-openjdk-devel
+BuildArch:        noarch
 
-Requires:       jpackage-utils
+BuildRequires:    java-devel
 
-BuildArch:      noarch
+BuildRequires:    mvn(com.beust:jcommander) >= 1.27
+BuildRequires:    mvn(com.google.guava:guava)
+BuildRequires:    mvn(com.google.inject:guice)
+BuildRequires:    mvn(junit:junit)
+BuildRequires:    mvn(org.apache.ant:ant)
+BuildRequires:    mvn(org.beanshell:bsh)
+BuildRequires:    mvn(org.sonatype.oss:oss-parent)
+BuildRequires:    mvn(org.yaml:snakeyaml)
+
+BuildRequires:    maven-local
+BuildRequires:    maven-plugin-bundle
 
 %description
 TestNG is a testing framework inspired from JUnit and NUnit but introducing
@@ -32,102 +32,109 @@ some new functionality, including flexible test configuration, and
 distributed test running.  It is designed to cover unit tests as well as
 functional, end-to-end, integration, etc.
 
-
 %package javadoc
-Summary:        API Documentation for %{name}
-Group:          Development/Java
-Requires:       jpackage-utils
+Summary:          API documentation for %{name}
 
 %description javadoc
-JavaDoc documentation for %{name}
-
+This package contains the API documentation for %{name}.
 
 %prep
-%setup -q
-%patch0 -p1 -b .nobundle
-%patch1 -p1 -b .dtddoc
-%patch2 -p1 -b .qdoc19
+%setup -q -n %{name}-%{name}-%{version}
 
+# build fix for new guice
+%pom_add_dep com.google.guava:guava::provided
+sed -i "s|com.google.inject.internal|com.google.common.collect|" \
+  src/main/java/org/testng/xml/XmlDependencies.java \
+  src/main/java/org/testng/xml/XmlGroups.java \
+  src/main/java/org/testng/xml/dom/TestNGTagFactory.java \
+  src/test/java/test/dependent/InstanceSkipSampleTest.java \
+  src/test/java/test/mustache/MustacheTest.java \
+  src/test/java/test/thread/B.java
+
+%pom_remove_plugin :maven-gpg-plugin
+%pom_remove_plugin :maven-source-plugin
+  
+# remove bundled stuff
+rm -rf spring
+rm -rf 3rdparty
+rm -rf lib-supplied
+rm -rf gigaspaces
+rm -f *.jar
+
+# convert to UTF-8
+native2ascii -encoding UTF-8 src/main/java/org/testng/internal/Version.java \
+  src/main/java/org/testng/internal/Version.java
+
+iconv --from-code=ISO-8859-2 --to-code=UTF-8 ANNOUNCEMENT.txt > ANNOUNCEMENT.txt.utf8
+mv -f ANNOUNCEMENT.txt.utf8 ANNOUNCEMENT.txt
+
+%mvn_file : %{name}
+# jdk15 classifier is used by some other packages
+%mvn_alias : :::jdk15:
 
 %build
-find -name '*.jar' -delete
-CLASSPATH=$(build-classpath bsh qdox junit) \
-        ant dist-15 javadocs
-
-# Convert CP/M line encoding to UNIX one
-sed 's/\r//' <README >README.unix
-touch -r README README.unix
-mv README.unix README
-
+%mvn_build -- -Dmaven.local.debug=true
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%mvn_install
 
-# Code
-install -d $RPM_BUILD_ROOT%{_javadir}
-install -pm644 %{name}-%{version}-jdk15.jar \
-        $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
-ln -s %{name}-%{version}.jar \
-        $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
+%files -f .mfiles
+%doc LICENSE.txt ANNOUNCEMENT.txt CHANGES.txt README
 
-# API documentation
-install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -a javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-
-# Maven stuff
-install -d -m 755 $RPM_BUILD_ROOT%{_datadir}/maven2/poms
-install -pm 644 %{SOURCE1} \
-        $RPM_BUILD_ROOT/%{_datadir}/maven2/poms/JPP-%{name}.pom
-%add_to_maven_depmap org.%{name} %{name} %{version} JPP %{name}
-
-
-%files
-%defattr(-,root,root,-)
-%{_javadir}/*
-%{_sysconfdir}/maven/fragments
-%{_datadir}/maven2
-%doc CHANGES.txt README LICENSE.txt
-
-
-%files javadoc
-%defattr(-,root,root,-)
-%{_javadocdir}/*
-
-
-%post
-%update_maven_depmap
-
-
-%postun
-%update_maven_depmap
-
-
-
+%files javadoc -f .mfiles-javadoc
+%doc LICENSE.txt
 
 %changelog
-* Sun Nov 27 2011 Guilherme Moro <guilherme@mandriva.com> 5.11-6
-+ Revision: 734246
-- rebuild
-- imported package testng
+* Thu Sep 12 2013 Stanislav Ochotnicky <sochotnicky@redhat.com> - 6.8.7-1
+- Update to upstream version 6.8.7
+- Provide additional jdk15 classifier
 
-* Thu Jan 15 2009 Götz Waschk <waschk@mandriva.org> 0:5.8-2.0.2mdv2009.1
-+ Revision: 329848
-- fix postun script
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 6.8.5-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
-* Thu Aug 07 2008 Thierry Vignaud <tv@mandriva.org> 0:5.8-2.0.1mdv2009.0
-+ Revision: 265755
-- rebuild early 2009.0 package (before pixel changes)
+* Tue May 14 2013 Mikolaj Izdebski <mizdebsk@redhat.com> - 6.8.5-1
+- Update to upstream version 6.8.5
 
-* Wed Apr 23 2008 Alexander Kurtakov <akurtakov@mandriva.org> 0:5.8-0.0.1mdv2009.0
-+ Revision: 196814
-- new version
+* Sun Feb 10 2013 Mat Booth <fedora@matbooth.co.uk> - 6.8-1
+- Update to latest upstream release, rhbz #888233
 
-* Thu Feb 07 2008 Alexander Kurtakov <akurtakov@mandriva.org> 0:5.6-1.0.1mdv2008.1
-+ Revision: 163756
-- rebuild
+* Wed Feb 06 2013 Java SIG <java-devel@lists.fedoraproject.org> - 6.0.1-6
+- Update for https://fedoraproject.org/wiki/Fedora_19_Maven_Rebuild
+- Replace maven BuildRequires with maven-local
 
-* Sat Jan 26 2008 Alexander Kurtakov <akurtakov@mandriva.org> 0:5.6-0.0.1mdv2008.1
-+ Revision: 158300
-- import testng
+* Thu Nov 08 2012 Stanislav Ochotnicky <sochotnicky@redhat.com> - 6.0.1-5
+- Part of testng is CPL, add it to license tag
 
+* Thu Jul 26 2012 Stanislav Ochotnicky <sochotnicky@redhat.com> - 6.0.1-4
+- Spec file cleanups and add_maven_depmap macro use
+- Drop no longer needed depmap
 
+* Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 6.0.1-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
+* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 6.0.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
+* Thu May 12 2011 Jaromir Capik <jcapik@redhat.com> - 6.0.1-1
+- Update to 6.0.1
+
+* Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 5.11-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
+* Mon Jul 19 2010 Lubomir Rintel <lkundrak@v3.sk> - 5.11-3
+- Drop backport util concurrent dependency, we don't build jdk14 jar
+
+* Mon Dec 21 2009 Lubomir Rintel <lkundrak@v3.sk> - 5.11-2
+- Add POM
+
+* Sun Dec 20 2009 Lubomir Rintel <lkundrak@v3.sk> - 5.11-1
+- Bump to 5.11
+- Add maven depmap fragments
+- Fix line encoding of README
+
+* Wed Dec 09 2009 Lubomir Rintel <lkundrak@v3.sk> - 5.10-2
+- Add javadoc
+- Don't ship jdk14 jar
+
+* Fri Nov 27 2009 Lubomir Rintel <lkundrak@v3.sk> - 5.10-1
+- Initial packaging
