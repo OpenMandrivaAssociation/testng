@@ -20,7 +20,7 @@ BuildRequires:    mvn(com.google.inject:guice)
 BuildRequires:    mvn(junit:junit)
 BuildRequires:    mvn(org.apache.ant:ant)
 BuildRequires:    mvn(org.beanshell:bsh)
-BuildRequires:    mvn(org.sonatype.oss:oss-parent)
+BuildRequires:    mvn(org.sonatype.oss:oss-parent:pom:)
 BuildRequires:    mvn(org.yaml:snakeyaml)
 
 BuildRequires:    maven-local
