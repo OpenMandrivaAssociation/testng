@@ -7,7 +7,7 @@ Release:          1.1%{?dist}
 Summary:          Java-based testing framework
 # org/testng/remote/strprotocol/AbstractRemoteTestRunnerClient.java is CPL
 License:          ASL 2.0 and CPL
-URL:              http://testng.org/
+URL:              https://testng.org/
 Source0:          https://github.com/cbeust/testng/archive/%{name}-%{version}.tar.gz
 
 BuildArch:        noarch
