@@ -1,140 +1,123 @@
-%{?_javapackages_macros:%_javapackages_macros}
-%global group_id  org.testng
+Name:		testng
+Version:	6.3.1
+Release:	1
+Summary:	Testing framework for Java
+Group:		Development/Java
+License:	Apache-2.0 and CPL
+URL:		https://testng.org/
+Source0:	https://github.com/cbeust/testng/archive/refs/tags/testng-%{version}.tar.gz#/testng-%{version}.tar.gz
+Patch0:		testng-6.3.1-snakeyaml2-jcommander2.patch
 
-Name:             testng
-Version:          6.8.7
-Release:          1.1%{?dist}
-Summary:          Java-based testing framework
-# org/testng/remote/strprotocol/AbstractRemoteTestRunnerClient.java is CPL
-License:          ASL 2.0 and CPL
-URL:              https://testng.org/
-Source0:          https://github.com/cbeust/testng/archive/%{name}-%{version}.tar.gz
-
-BuildArch:        noarch
-
-BuildRequires:    java-devel
-
-BuildRequires:    mvn(com.beust:jcommander) >= 1.27
-BuildRequires:    mvn(com.google.guava:guava)
-BuildRequires:    mvn(com.google.inject:guice)
-BuildRequires:    mvn(junit:junit)
-BuildRequires:    mvn(org.apache.ant:ant)
-BuildRequires:    mvn(org.beanshell:bsh)
-BuildRequires:    mvn(org.sonatype.oss:oss-parent:pom:)
-BuildRequires:    mvn(org.yaml:snakeyaml)
-
-BuildRequires:    maven-local
-BuildRequires:    maven-plugin-bundle
+BuildArch:	noarch
+BuildRequires:	java-current-devel
+BuildRequires:	sysjar
+BuildRequires:	mvn(com.beust:jcommander)
+BuildRequires:	mvn(com.google.inject:guice)
+BuildRequires:	mvn(junit:junit)
+BuildRequires:	mvn(org.apache.ant:ant)
+BuildRequires:	mvn(org.apache-extras.beanshell:bsh)
+BuildRequires:	mvn(org.yaml:snakeyaml)
 
 %description
-TestNG is a testing framework inspired from JUnit and NUnit but introducing
-some new functionality, including flexible test configuration, and
-distributed test running.  It is designed to cover unit tests as well as
-functional, end-to-end, integration, etc.
-
-%package javadoc
-Summary:          API documentation for %{name}
-
-%description javadoc
-This package contains the API documentation for %{name}.
+TestNG 6.3.1 is the release Gradle 8.11.1 strictly pins. Later releases
+break Gradle's cross-version test filtering, and TestNG 7.6 needs
+Java 11. This package builds that release from source. SnakeYAML 2
+removed Loader, so suite YAML is loaded through Constructor and
+LoaderOptions. JCommander 2 splits comma-separated method lists with
+CommaParameterSplitter. Vendored jars are not in the archive.
+AbstractRemoteTestRunnerClient is Common Public License 1.0. The rest
+is Apache-2.0.
 
 %prep
-%setup -q -n %{name}-%{name}-%{version}
-
-# build fix for new guice
-%pom_add_dep com.google.guava:guava::provided
-sed -i "s|com.google.inject.internal|com.google.common.collect|" \
-  src/main/java/org/testng/xml/XmlDependencies.java \
-  src/main/java/org/testng/xml/XmlGroups.java \
-  src/main/java/org/testng/xml/dom/TestNGTagFactory.java \
-  src/test/java/test/dependent/InstanceSkipSampleTest.java \
-  src/test/java/test/mustache/MustacheTest.java \
-  src/test/java/test/thread/B.java
-
-%pom_remove_plugin :maven-gpg-plugin
-%pom_remove_plugin :maven-source-plugin
-  
-# remove bundled stuff
-rm -rf spring
-rm -rf 3rdparty
-rm -rf lib-supplied
-rm -rf gigaspaces
-rm -f *.jar
-
-# convert to UTF-8
-native2ascii -encoding UTF-8 src/main/java/org/testng/internal/Version.java \
-  src/main/java/org/testng/internal/Version.java
-
-iconv --from-code=ISO-8859-2 --to-code=UTF-8 ANNOUNCEMENT.txt > ANNOUNCEMENT.txt.utf8
-mv -f ANNOUNCEMENT.txt.utf8 ANNOUNCEMENT.txt
-
-%mvn_file : %{name}
-# jdk15 classifier is used by some other packages
-%mvn_alias : :::jdk15:
+%autosetup -n testng-%{version} -p1
+find . -name '*.jar' -delete
+find . -name '*.class' -delete
 
 %build
-%mvn_build -- -Dmaven.local.debug=true
+export JAVA_HOME=%{_jvmdir}/java-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
+mkdir -p classes
+find src/main/java -name '*.java' > sources.list
+javac --release 8 -encoding UTF-8 -Xlint:-options -Xlint:-path \
+	-cp "%{_javadir}/jcommander.jar:%{_javadir}/google-guice.jar:%{_javadir}/junit.jar:%{_javadir}/ant.jar:%{_javadir}/bsh.jar:%{_javadir}/snakeyaml.jar" \
+	-d classes @sources.list
+cp -a src/main/resources/. classes/
+jar cf testng.jar -C classes .
+cat > testng.pom <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.testng</groupId>
+  <artifactId>testng</artifactId>
+  <version>%{version}</version>
+  <name>TestNG</name>
+  <description>Testing framework. Gradle 8.11.1 pins 6.3.1.</description>
+  <url>https://testng.org/</url>
+  <licenses>
+    <license>
+      <name>Apache-2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <dependencies>
+    <dependency>
+      <groupId>com.beust</groupId>
+      <artifactId>jcommander</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>5.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.10.18</version>
+    </dependency>
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>2.7</version>
+    </dependency>
+  </dependencies>
+</project>
+EOF
 
 %install
-%mvn_install
+sysjar install --buildroot %{buildroot} \
+	--artifact testng.pom:testng.jar \
+	--file-name testng \
+	--filelist .mfiles
+
+%check
+export JAVA_HOME=%{_jvmdir}/java-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
+JAR=%{buildroot}%{_javadir}/testng.jar
+test -f "$JAR"
+mkdir -p check
+cat > check/Smoke.java <<'END'
+public class Smoke {
+	public static void main(String[] args) {
+		org.testng.xml.XmlTest test = new org.testng.xml.XmlTest();
+		test.setName("gradle");
+		if (org.testng.ITestResult.SUCCESS != 1) {
+			throw new RuntimeException("status");
+		}
+		System.out.println("testng_ok " + test.getName());
+	}
+}
+END
+CP="$JAR:%{_javadir}/jcommander.jar:%{_javadir}/google-guice.jar:%{_javadir}/junit.jar:%{_javadir}/ant.jar:%{_javadir}/snakeyaml.jar"
+javac --release 8 -encoding UTF-8 -Xlint:-options -cp "$CP" -d check check/Smoke.java
+java -cp "check:$CP" Smoke > check/out.txt
+grep -F 'testng_ok gradle' check/out.txt
 
 %files -f .mfiles
-%doc LICENSE.txt ANNOUNCEMENT.txt CHANGES.txt README
-
-%files javadoc -f .mfiles-javadoc
-%doc LICENSE.txt
-
-%changelog
-* Thu Sep 12 2013 Stanislav Ochotnicky <sochotnicky@redhat.com> - 6.8.7-1
-- Update to upstream version 6.8.7
-- Provide additional jdk15 classifier
-
-* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 6.8.5-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
-
-* Tue May 14 2013 Mikolaj Izdebski <mizdebsk@redhat.com> - 6.8.5-1
-- Update to upstream version 6.8.5
-
-* Sun Feb 10 2013 Mat Booth <fedora@matbooth.co.uk> - 6.8-1
-- Update to latest upstream release, rhbz #888233
-
-* Wed Feb 06 2013 Java SIG <java-devel@lists.fedoraproject.org> - 6.0.1-6
-- Update for https://fedoraproject.org/wiki/Fedora_19_Maven_Rebuild
-- Replace maven BuildRequires with maven-local
-
-* Thu Nov 08 2012 Stanislav Ochotnicky <sochotnicky@redhat.com> - 6.0.1-5
-- Part of testng is CPL, add it to license tag
-
-* Thu Jul 26 2012 Stanislav Ochotnicky <sochotnicky@redhat.com> - 6.0.1-4
-- Spec file cleanups and add_maven_depmap macro use
-- Drop no longer needed depmap
-
-* Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 6.0.1-3
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
-
-* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 6.0.1-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
-
-* Thu May 12 2011 Jaromir Capik <jcapik@redhat.com> - 6.0.1-1
-- Update to 6.0.1
-
-* Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 5.11-4
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
-
-* Mon Jul 19 2010 Lubomir Rintel <lkundrak@v3.sk> - 5.11-3
-- Drop backport util concurrent dependency, we don't build jdk14 jar
-
-* Mon Dec 21 2009 Lubomir Rintel <lkundrak@v3.sk> - 5.11-2
-- Add POM
-
-* Sun Dec 20 2009 Lubomir Rintel <lkundrak@v3.sk> - 5.11-1
-- Bump to 5.11
-- Add maven depmap fragments
-- Fix line encoding of README
-
-* Wed Dec 09 2009 Lubomir Rintel <lkundrak@v3.sk> - 5.10-2
-- Add javadoc
-- Don't ship jdk14 jar
-
-* Fri Nov 27 2009 Lubomir Rintel <lkundrak@v3.sk> - 5.10-1
-- Initial packaging
+%license LICENSE.txt
+%doc README

@@ -1,2 +1,3 @@
 sources:
-  testng-6.8.7.tar.gz: d7bf59dc6646014960b89884804eedb98162866e
+  testng-6.3.1.tar.gz: 37dc854d54aa6eed9c154aeafdcf17be3dae6e7a
+  testng-6.3.1-snakeyaml2-jcommander2.patch: dff7213f935e3d0724400da34aa271491178f982
